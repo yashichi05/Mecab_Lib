@@ -12,7 +12,7 @@
 ## 🎐編譯debug exe
 
 ```sh
-    cl /Zi /EHsc -DDLL_IMPORT -I. main.cpp libmecab.lib
+    cl /Zi /EHsc -DDLL_IMPORT -I. -Fe"mecab/main.exe" main.cpp mecab/libmecab.lib
     g++ -g -DDLL_IMPORT -I. main.cpp mecab/libmecab.lib -o mecab/main.exe
 ```
 

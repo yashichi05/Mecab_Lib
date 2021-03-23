@@ -3,3 +3,6 @@ libmecab.dll
 *.exe
 .vscode/
 mecab/
+*.ilk
+*.obj
+*.pdb
