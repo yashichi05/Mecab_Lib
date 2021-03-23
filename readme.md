@@ -1,5 +1,5 @@
 
-## 🌻vscode terminal 設置環境
+## 🌻vscode terminal 設置MSBuild環境
 
 ```json
     {"terminal.integrated.shellArgs.windows": [
@@ -13,5 +13,9 @@
 
 ```sh
     cl /Zi /EHsc -DDLL_IMPORT -I. main.cpp libmecab.lib
-    g++ -g -DDLL_IMPORT -I. main.cpp lib/libmecab.lib -o main.exe
+    g++ -g -DDLL_IMPORT -I. main.cpp mecab/libmecab.lib -o mecab/main.exe
 ```
+
+## 👆使用
+* 需解壓縮mecab.z7
+* 終端轉碼顯示日文 chcp 65001

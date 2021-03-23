@@ -1,7 +1,7 @@
 #include <iostream>
 #include <locale>
 #include <windows.h>
-#include "lib/mecab.h"
+#include "mecab/mecab.h"
 #include <string>
 
 int main()
