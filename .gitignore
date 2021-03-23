@@ -1,3 +1,5 @@
 
 libmecab.dll
-main.exe
+*.exe
+.vscode/
+mecab/
