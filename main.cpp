@@ -24,22 +24,28 @@ int main(int argc, char **argv)
     CHECK(res1)
     std::cout << "取得結果" << std::endl;
     std::cout << res1 << std::endl;
+    //
+    //
+    //
 
     // 取的前n個最好結果
+    mecab_set_lattice_level(mecab, 1);
+    // 全部結果
+    const char *res2 = mecab_nbest_sparse_tostr(mecab, 2, input);
+    CHECK(res2);
+    std::cout << "取的前n個最好結果" << std::endl;
+    std::cout << res2 << std::endl;
 
-    // const char *res2 = mecab_nbest_sparse_tostr2(mecab, 3, input,1);
-    // CHECK(res2);
-    // std::cout << "取的前n個最好結果" << std::endl;
-    // std::cout << res2 << std::endl;
-
-    // const mecab_node_t *node;
-    // int i;
-    // size_t len;
-    // CHECK(mecab_nbest_init(mecab, input));
-    // for (i = 0; i < 3; ++i)
-    // {
-    //     printf("%d:\n%s", i, mecab_nbest_next_tostr(mecab));
-    // }
+    CHECK(mecab_nbest_init(mecab, input));
+    //一個一個取
+    for (int i = 0; i < 3; ++i)
+    {
+        std::cout << "第" << i << std::endl;
+        std::cout << mecab_nbest_next_tostr(mecab) << std::endl;
+    }
+    //
+    //
+    //
 
     std::cout << "取得node object" << std::endl;
     const mecab_node_t *node = mecab_sparse_tonode(mecab, input);
@@ -48,17 +54,19 @@ int main(int argc, char **argv)
     {
         if (node->stat == MECAB_NOR_NODE || node->stat == MECAB_UNK_NODE)
         {
-            // fwrite(node->surface, sizeof(char), node->length, stdout);
             //剩餘的字
             std::cout << node->surface << std::endl;
             // 解析字數
             std::cout << node->length << std::endl;
             // 當下解析字(剩餘字,當前解析字數) ，顯示字串的前N個
-            std::cout.write(node->surface, node->length);
+            std::cout.write(node->surface, node->length) << std::endl;
             //後面的解析
             std::cout << node->feature << std::endl;
         }
     }
+    //
+    //
+    //
 
     // // Dictionary info
     // const mecab_dictionary_info_t *d = mecab_dictionary_info(mecab);
