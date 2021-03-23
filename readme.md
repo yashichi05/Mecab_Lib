@@ -13,5 +13,5 @@
 
 ```sh
     cl /Zi /EHsc -DDLL_IMPORT -I. main.cpp libmecab.lib
-    g++ -g -DDLL_IMPORT -I. main.cpp -o main.exe libmecab.lib
+    g++ -g -DDLL_IMPORT -I. main.cpp lib/libmecab.lib -o main.exe
 ```
