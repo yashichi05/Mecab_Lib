@@ -19,3 +19,4 @@
 ## 👆使用
 * 需解壓縮mecab.z7
 * 終端轉碼顯示日文 chcp 65001
+* 需要debug 要把vscode的launch.json，執行命令參數設定的跟編譯一樣
