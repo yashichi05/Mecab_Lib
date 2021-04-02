@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <locale>
 #include <windows.h>
 #include "mecab/mecab.h"
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-    char input[] = "今日もしないとね。";
+    char input[] = u8"今日もしないとね。";
 
     mecab_t *mecab = mecab_new(argc, argv);
     CHECK(mecab);
@@ -82,6 +82,6 @@ int main(int argc, char **argv)
     // }
 
     mecab_destroy(mecab);
-
+    std::cin.get();
     return 0;
 }

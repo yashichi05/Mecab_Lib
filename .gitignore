@@ -2,6 +2,7 @@
 libmecab.dll
 *.exe
 .vscode/
+build/
 mecab/
 *.ilk
 *.obj
