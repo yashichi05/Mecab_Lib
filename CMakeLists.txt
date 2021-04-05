@@ -12,11 +12,13 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_FINAL_OUTPUT_DIRECTORY}>)
 file(GLOB MECAB mecab/*)
 file(COPY ${MECAB} DESTINATION ${CMAKE_SOURCE_DIR}/build/exe)
 
+add_library(mecabWindow MODULE mecabWindow.cpp ExtensionImpl.cpp)
 
 # 連結資料夾
 link_directories(./mecab)
-#編譯內容
-add_executable(Mecab_window main.cpp)
-
 # 連結lib
-target_link_libraries(Mecab_window libmecab)
+target_link_libraries(mecabWindow libmecab)
+
+
+#編譯內容
+add_executable(test test.cpp)
