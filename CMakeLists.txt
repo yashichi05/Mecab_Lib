@@ -13,6 +13,7 @@ file(GLOB MECAB mecab/*)
 file(COPY ${MECAB} DESTINATION ${CMAKE_SOURCE_DIR}/build/exe)
 
 add_library(mecabWindow MODULE mecabWindow.cpp ExtensionImpl.cpp)
+# add_library(vExten MODULE VisualExtension.cpp ExtensionImpl.cpp)
 
 # 連結資料夾
 link_directories(./mecab)
