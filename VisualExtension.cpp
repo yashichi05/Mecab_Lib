@@ -7,6 +7,8 @@ std::wstring currentSentence = L"Waiting...";
 
 BOOL WINAPI DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
+	// https://docs.microsoft.com/zh-tw/cpp/mfc/tn001-window-class-registration?view=msvc-160
+	// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createwindowexw
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
@@ -15,9 +17,10 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved
 		wcex.cbSize = sizeof(WNDCLASSEX);
 		wcex.style = CS_HREDRAW | CS_VREDRAW;
 		wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-		wcex.hInstance = hModule;
+		wcex.hInstance = hModule; //進程地址
 		wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-		wcex.lpszClassName = L"Extra Window";
+		wcex.lpszClassName = L"Extra Window";  //註冊的類別名稱
+		// 視窗運行進程，接收 message loop
 		wcex.lpfnWndProc = [](HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) -> LRESULT {
 			switch (message)
 			{
