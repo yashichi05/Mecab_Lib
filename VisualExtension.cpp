@@ -18,8 +18,7 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved
 		wcex.hInstance = hModule;
 		wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 		wcex.lpszClassName = L"Extra Window";
-		wcex.lpfnWndProc = [](HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) -> LRESULT
-		{
+		wcex.lpfnWndProc = [](HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) -> LRESULT {
 			switch (message)
 			{
 			case WM_PAINT:
@@ -28,7 +27,7 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved
 				HDC hdc = BeginPaint(hWnd, &ps);
 				RECT wndRect;
 				GetWindowRect(hWnd, &wndRect);
-				RECT rect = { 0, 0, wndRect.right - wndRect.left, wndRect.bottom - wndRect.top };
+				RECT rect = {0, 0, wndRect.right - wndRect.left, wndRect.bottom - wndRect.top};
 				FillRect(hdc, &rect, (HBRUSH)(COLOR_WINDOW + 1));
 				std::lock_guard<std::mutex> lock(m);
 				DrawTextW(hdc, currentSentence.c_str(), -1, &rect, DT_WORDBREAK);
@@ -52,12 +51,12 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved
 			0,
 			CW_USEDEFAULT,
 			0,
-			FindWindowW(NULL, L"Textractor") /*NULL*/,
+			NULL /*NULL*/,
 			NULL,
 			hModule,
-			nullptr
-		);
-		if (!hWnd) throw;
+			nullptr);
+		if (!hWnd)
+			throw;
 		ShowWindow(hWnd, SW_SHOWNORMAL);
 		UpdateWindow(hWnd);
 	}
@@ -71,13 +70,13 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved
 	return TRUE;
 }
 
-bool ProcessSentence(std::wstring& sentence, SentenceInfo sentenceInfo)
+bool ProcessSentence(std::wstring &sentence, SentenceInfo sentenceInfo)
 {
 	if (sentenceInfo["current select"])
 	{
 		std::lock_guard<std::mutex> lock(m);
 		currentSentence = sentence;
-		InvalidateRect(hWnd, nullptr, FALSE); // Force window repaint
+		BOOL abc = InvalidateRect(hWnd, nullptr, FALSE); // Force window repaint
 	}
 	return false;
 }
