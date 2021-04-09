@@ -18,7 +18,7 @@ add_library(mecabWindow SHARED mecabWindow.cpp ExtensionImpl.cpp)
 add_library(visual\ Extension SHARED VisualExtension.cpp ExtensionImpl.cpp)
 
 # 連結資料夾
-link_directories(./mecab)
+link_directories(mecab)
 # 連結lib
 target_link_libraries(mecabWindow libmecab)
 
