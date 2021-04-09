@@ -14,13 +14,13 @@ add_compile_options(
 file(GLOB MECAB mecab/*)
 file(COPY ${MECAB} DESTINATION ${CMAKE_SOURCE_DIR}/build/exe)
 
-# add_library(mecabWindow MODULE mecabWindow.cpp ExtensionImpl.cpp)
+add_library(mecabWindow SHARED mecabWindow.cpp ExtensionImpl.cpp)
 add_library(visual\ Extension SHARED VisualExtension.cpp ExtensionImpl.cpp)
 
 # 連結資料夾
 link_directories(./mecab)
 # 連結lib
-# target_link_libraries(mecabWindow libmecab)
+target_link_libraries(mecabWindow libmecab)
 
 
 #編譯內容
