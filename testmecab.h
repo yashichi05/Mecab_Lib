@@ -28,7 +28,7 @@ public:
     {
         mecab_destroy(mecab);
     };
-    char *char_sentence;
+    const char *char_sentence;
     const mecab_node_t *node_sentence;
 
 private:
@@ -36,8 +36,8 @@ private:
     void convertStr(std::wstring &sentence)
     {
         QString input_qs(S(sentence));
-        QByteArray input_qr = input_qs.toLocal8Bit();
-        char_sentence = input_qr.data();
+        QByteArray input_qr = input_qs.toUtf8();
+        char_sentence = input_qr.toStdString().c_str();
         getMecabNode();
     };
     void getMecabNode()
