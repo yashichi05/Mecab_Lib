@@ -1,6 +1,7 @@
 ﻿#include "mecab/mecab.h"
 #include <QString>
 #include <QStringList>
+#include <iostream>
 
 #define CHECK(eval)                                               \
     if (!eval)                                                    \
@@ -20,7 +21,7 @@ public:
     {
         char *argv = "";
         mecab = mecab_new(0, &argv);
-        convert(sentence);
+        convertStr(sentence);
         outputHtml(sentence);
     };
     ~useMecab()
@@ -32,7 +33,7 @@ public:
 
 private:
     mecab_t *mecab;
-    void *convert(std::wstring &sentence)
+    void convertStr(std::wstring &sentence)
     {
         QString input_qs(S(sentence));
         QByteArray input_qr = input_qs.toLocal8Bit();
@@ -49,6 +50,7 @@ private:
         QString style = "<style>td{padding:0 1px;}</style>";
         QString tr1 = "";
         QString tr2 = "";
+        
         for (; node_sentence; node_sentence = node_sentence->next)
         {
             if (node_sentence->stat == MECAB_NOR_NODE || node_sentence->stat == MECAB_UNK_NODE)
