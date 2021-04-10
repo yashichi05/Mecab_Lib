@@ -26,7 +26,7 @@ std::array<InfoForExtension, 10> info_ary{{
 InfoForExtension *info_arg = info_ary.data();
 int main(int argc, char **argv)
 {
-    HMODULE module = LoadLibraryW(L"mecabWindow Extension.dll");
+    HMODULE module = LoadLibraryW(L"addMecab.dll");
     auto callback = (decltype(Extension::callback))GetProcAddress(module, "OnNewSentence");
 
     callback(L"今日もしないとね。", info_arg);

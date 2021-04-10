@@ -4,6 +4,7 @@ libmecab.dll
 .vscode/
 build/
 mecab/
+dist/
 .vs/
 *.ilk
 *.obj

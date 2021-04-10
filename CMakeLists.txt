@@ -4,7 +4,7 @@ cmake_policy(SET CMP0037 OLD)
 
 project(Mecab_window)
 
-set(CMAKE_FINAL_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/exe)
+set(CMAKE_FINAL_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/dist)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY $<1:${CMAKE_FINAL_OUTPUT_DIRECTORY}>)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY $<1:${CMAKE_FINAL_OUTPUT_DIRECTORY}>)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $<1:${CMAKE_FINAL_OUTPUT_DIRECTORY}>)
@@ -32,10 +32,9 @@ link_directories(mecab)
 file(GLOB MECAB mecab/*)
 file(COPY ${MECAB} DESTINATION ${CMAKE_SOURCE_DIR}/build/exe)
 
-add_library(mecabWindow\ Extension SHARED mecabWindow.cpp ExtensionImpl.cpp)
-add_library(visual\ Extension SHARED VisualExtension.cpp ExtensionImpl.cpp)
+add_library(addMecab SHARED mecabWindow.cpp ExtensionImpl.cpp)
 # 連結lib
-target_link_libraries(mecabWindow\ Extension libmecab Qt5::Widgets)
+target_link_libraries(addMecab libmecab Qt5::Widgets)
 
 
 #編譯內容
