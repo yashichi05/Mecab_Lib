@@ -26,14 +26,14 @@ std::array<InfoForExtension, 10> info_ary{{
 InfoForExtension *info_arg = info_ary.data();
 int main(int argc, char **argv)
 {
-    HMODULE module = LoadLibraryW(L"addMecab.dll");
+    HMODULE module = LoadLibraryW(L"testmecab.dll");
     auto callback = (decltype(Extension::callback))GetProcAddress(module, "OnNewSentence");
 
     callback(L"今日もしないとね。", info_arg);
-    // MSG msg = {};
-    // while (GetMessage(&msg, NULL, 0, 0))
-    // {
-    //     TranslateMessage(&msg);
-    //     DispatchMessage(&msg);
-    // }
+    MSG msg = {};
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
 }

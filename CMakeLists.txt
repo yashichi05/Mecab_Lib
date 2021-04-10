@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
-cmake_policy(SET CMP0037 OLD)
+﻿cmake_minimum_required(VERSION 3.10)
 # set the project name
 
 project(Mecab_window)
@@ -24,18 +23,18 @@ add_compile_options(
   /D_UNICODE
 )
 
+add_executable(test test.cpp)
 
 # 連結資料夾
 link_directories(mecab)
 
 # 複製整個mecab資料夾
 file(GLOB MECAB mecab/*)
-file(COPY ${MECAB} DESTINATION ${CMAKE_SOURCE_DIR}/build/exe)
+file(COPY ${MECAB} DESTINATION ${CMAKE_SOURCE_DIR}/dist)
 
-add_library(addMecab SHARED mecabWindow.cpp ExtensionImpl.cpp)
+add_library(testmecab SHARED testmecab.cpp ExtensionImpl.cpp)
 # 連結lib
-target_link_libraries(addMecab libmecab Qt5::Widgets)
+target_link_libraries(testmecab libmecab Qt5::Widgets)
 
 
 #編譯內容
-add_executable(test test.cpp)
