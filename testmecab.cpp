@@ -20,12 +20,12 @@ inline QString S(const std::wstring &s) { return QString::fromStdWString(s); }
 
 bool ProcessSentence(std::wstring &sentence, SentenceInfo sentenceInfo)
 {
-    // char input[] = u8"今日もしないとね。";
-    QString input_qs(S(sentence));
-    // char input[999];
-    QByteArray ba = input_qs.toLocal8Bit();
-    char *input = ba.data();
-    // strcpy(o_i, input);
+    char input[] = u8"今日もしないとね。";
+    // QString input_qs(S(sentence));
+    // // char input[999];
+    // QByteArray ba = input_qs.toLocal8Bit();
+    // char *input = ba.data();
+    // // strcpy(o_i, input);
     char *argv = "";
     //
     //

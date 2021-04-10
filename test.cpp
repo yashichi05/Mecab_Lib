@@ -30,10 +30,10 @@ int main(int argc, char **argv)
     auto callback = (decltype(Extension::callback))GetProcAddress(module, "OnNewSentence");
 
     callback(L"今日もしないとね。", info_arg);
-    MSG msg = {};
-    while (GetMessage(&msg, NULL, 0, 0))
-    {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
-    }
+    // MSG msg = {};
+    // while (GetMessage(&msg, NULL, 0, 0))
+    // {
+    //     TranslateMessage(&msg);
+    //     DispatchMessage(&msg);
+    // }
 }

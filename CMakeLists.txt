@@ -32,7 +32,7 @@ link_directories(mecab)
 file(GLOB MECAB mecab/*)
 file(COPY ${MECAB} DESTINATION ${CMAKE_SOURCE_DIR}/dist)
 
-add_library(testmecab SHARED testmecab.cpp ExtensionImpl.cpp)
+add_library(testmecab MODULE testmecab.cpp ExtensionImpl.cpp)
 # 連結lib
 target_link_libraries(testmecab libmecab Qt5::Widgets)
 

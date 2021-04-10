@@ -1,4 +1,4 @@
-macro(msvc_registry_search)
+﻿macro(msvc_registry_search)
 # 沒有Qt5_DIR、MSVC 變數
 	if(NOT DEFINED Qt5_DIR AND MSVC)
 		# look for user-registry pointing to qtcreator 取得 qtcreater 的bin資料夾(C:\Qt\\Tools\QtCreator\bin\qtcreator.exe -client "%1") ，PATH 同 DIRECTORY 僅取得資料夾
