@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <Windows.h>
 #include "Extension.h"
 #include <array>
@@ -26,14 +26,14 @@ std::array<InfoForExtension, 10> info_ary{{
 InfoForExtension *info_arg = info_ary.data();
 int main(int argc, char **argv)
 {
-    HMODULE module = LoadLibraryW(L"visual Extension.dll");
+    HMODULE module = LoadLibraryW(L"mecabWindow Extension.dll");
     auto callback = (decltype(Extension::callback))GetProcAddress(module, "OnNewSentence");
 
-    callback(L"aaaa999999999999999999999999999999999", info_arg);
-    MSG msg = {};
-    while (GetMessage(&msg, NULL, 0, 0))
-    {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
-    }
+    callback(L"今日もしないとね。", info_arg);
+    // MSG msg = {};
+    // while (GetMessage(&msg, NULL, 0, 0))
+    // {
+    //     TranslateMessage(&msg);
+    //     DispatchMessage(&msg);
+    // }
 }

@@ -1,4 +1,4 @@
-#include "extension.h"
+﻿#include "extension.h"
 #include <mutex>
 
 HWND hWnd;

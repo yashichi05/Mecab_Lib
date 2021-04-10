@@ -3,25 +3,39 @@
 #include <windows.h>
 #include "mecab/mecab.h"
 #include <string>
+#include "Extension.h"
+#include <QString>
 
 #define CHECK(eval)                                               \
     if (!eval)                                                    \
     {                                                             \
         fprintf(stderr, "Exception:%s\n", mecab_strerror(mecab)); \
         mecab_destroy(mecab);                                     \
-        return -1;                                                \
+        return false;                                             \
     }
+#define BUFFER_SIZE 100
 
-int main(int argc, char **argv)
+inline QString S(const std::string &s) { return QString::fromStdString(s); }
+inline QString S(const std::wstring &s) { return QString::fromStdWString(s); }
+
+bool ProcessSentence(std::wstring &sentence, SentenceInfo sentenceInfo)
 {
-    char input[] = u8"今日もしないとね。";
+    // char input[] = u8"今日もしないとね。";
+    QString input_qs(S(sentence));
+    // char input[999];
+    QByteArray ba = input_qs.toLocal8Bit();
+    char *input = ba.data();
+    // strcpy(o_i, input);
+    char *argv = "";
+    //
+    //
 
-    mecab_t *mecab = mecab_new(argc, argv);
+    mecab_t *mecab = mecab_new(0, &argv);
     CHECK(mecab);
 
     // 取得結果
     const char *res1 = mecab_sparse_tostr(mecab, input);
-    CHECK(res1)
+    CHECK(res1);
     std::cout << "取得結果" << std::endl;
     std::cout << res1 << std::endl;
     //
@@ -82,6 +96,5 @@ int main(int argc, char **argv)
     // }
 
     mecab_destroy(mecab);
-    std::cin.get();
-    return 0;
+    return false;
 }
