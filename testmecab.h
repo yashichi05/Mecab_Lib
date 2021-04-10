@@ -36,8 +36,9 @@ private:
     void convertStr(std::wstring &sentence)
     {
         QString input_qs(S(sentence));
-        QByteArray input_qr = input_qs.toUtf8();
-        char_sentence = input_qr.toStdString().c_str();
+        char *char_s = new char[input_qs.toStdString().length() + 1];
+        strcpy(char_s, input_qs.toStdString().c_str());
+        char_sentence = char_s;
         getMecabNode();
     };
     void getMecabNode()
@@ -50,7 +51,7 @@ private:
         QString style = "<style>td{padding:0 1px;}</style>";
         QString tr1 = "";
         QString tr2 = "";
-        
+
         for (; node_sentence; node_sentence = node_sentence->next)
         {
             if (node_sentence->stat == MECAB_NOR_NODE || node_sentence->stat == MECAB_UNK_NODE)
