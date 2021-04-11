@@ -11,7 +11,7 @@ bool ProcessSentence(std::wstring &sentence, SentenceInfo sentenceInfo)
     // QString pronounce("");
     // QStringList pronounce_list = pronounce.split(',');
     // std::cout << pronounce_list.takeLast().toUtf8().constData();
-    useMecab res(sentence);
+    useMecab res(sentence,16);
     std::wcout << sentence;
     return false;
 }
