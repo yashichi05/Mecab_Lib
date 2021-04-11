@@ -17,12 +17,12 @@ inline QString S(const std::wstring &s) { return QString::fromStdWString(s); }
 class useMecab
 {
 public:
-    useMecab(std::wstring &sentence)
+    useMecab(std::wstring &sentence, int fontSize)
     {
         char *argv = "";
         mecab = mecab_new(0, &argv);
         convertStr(sentence);
-        outputHtml(sentence);
+        outputHtml(sentence, fontSize);
     };
     ~useMecab()
     {
@@ -45,24 +45,24 @@ private:
     {
         node_sentence = mecab_sparse_tonode(mecab, char_sentence);
     };
-    void outputHtml(std::wstring &sentence)
+    void outputHtml(std::wstring &sentence, int fontSize)
     {
 
         QString style = "<style>td{padding:0 1px;}</style>";
         QString tr1 = "";
         QString tr2 = "";
-
         for (; node_sentence; node_sentence = node_sentence->next)
         {
             if (node_sentence->stat == MECAB_NOR_NODE || node_sentence->stat == MECAB_UNK_NODE)
             {
                 // 當下解析字
                 QString current_str(node_sentence->surface);
-                current_str.truncate(node_sentence->length);
+                current_str = current_str.trimmed();
+                current_str.truncate(node_sentence->length / 3);
                 QString pronounce(node_sentence->feature);
                 QStringList pronounce_list = pronounce.split(QString(","));
 
-                tr1 += "<td align=\"center\" style=\"font-size:12px;\">" + pronounce_list.takeLast() + "</td>";
+                tr1 += "<td align=\"center\" style=\"font-size:" + QString::number(fontSize * 0.75) + "px;\">" + pronounce_list.takeLast() + "</td>";
                 tr2 += "<td align=\"center\">" + current_str + "</td>";
             }
         }
